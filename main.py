@@ -23,6 +23,7 @@ def allUsers():
 
 @app.post('/create-user')
 def createUser(name: str, age: int):
+
     finalKey = list(response.keys())
 
     temp = {
@@ -30,7 +31,7 @@ def createUser(name: str, age: int):
         'age' : age
     }
     
-    response[finalKey[len(finalKey) - 1]] = temp
+    response[finalKey[len(finalKey)]] += temp
 
     return response
 
@@ -43,3 +44,8 @@ def updateUser(id: int, name: str, age: int):
 
     return response
 
+@app.delete('/delete-user/{id}')
+def deleteUser(id: int):
+    del response[id]
+
+    return response
